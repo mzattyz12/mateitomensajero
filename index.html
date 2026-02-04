@@ -1,150 +1,180 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Snake Game</title>
-<style>
-  /* Reset and body */
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background: #f0f2f5;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  }
+  <!-- PushAlert Unified Code -->
+<script type="text/javascript">
+    (function(d, t) {
+        var g = d.createElement(t),
+        s = d.getElementsByTagName(t)[0];
+        g.src = "https://cdn.pushalert.co/unified_a2ff9d3510c8693d1baed746524fc762.js";
+        s.parentNode.insertBefore(g, s);
+    }(document, "script"));
+</script>
+<!-- End PushAlert Unified Code -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Joke Button</title>
+  <style>
+    /* Apple-style minimal interface */
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background: #f2f2f5;
+      color: #1c1c1e;
+    }
 
-  h1 {
-    margin-bottom: 20px;
-    color: #333;
-  }
+    .container {
+      text-align: center;
+      background: #fff;
+      padding: 40px 60px;
+      border-radius: 25px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    }
 
-  /* Game container */
-  .game-container {
-    position: relative;
-    background: #fff;
-    border-radius: 20px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    padding: 20px;
-  }
+    h1 {
+      font-weight: 600;
+      margin-bottom: 30px;
+      font-size: 2em;
+    }
 
-  /* Canvas */
-  canvas {
-    display: block;
-    background: #1e1e2f;
-    border-radius: 15px;
-  }
+    #jokeButton {
+      background: #007aff;
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      font-size: 1.2em;
+      border-radius: 15px;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+    }
 
-  /* Score */
-  .score {
-    margin-top: 15px;
-    font-size: 18px;
-    color: #333;
-    text-align: center;
-  }
+    #jokeButton:hover {
+      background: #005bb5;
+      transform: scale(1.05);
+    }
 
-  /* Controls info */
-  .controls {
-    margin-top: 10px;
-    font-size: 14px;
-    color: #666;
-    text-align: center;
-  }
-</style>
+    #jokeText {
+      margin-top: 30px;
+      font-size: 1.2em;
+      max-width: 600px;
+    }
+  </style>
 </head>
 <body>
+  <div class="container">
+    <h1>Funny Button 😄</h1>
+    <button id="jokeButton">Tell me a joke</button>
+    <p id="jokeText">Click the button to get a joke!</p>
+  </div>
 
-<h1>Snake Game</h1>
-<div class="game-container">
-  <canvas id="gameCanvas" width="400" height="400"></canvas>
-  <div class="score">Score: <span id="score">0</span></div>
-  <div class="controls">Use arrow keys to move the snake</div>
-</div>
+  <script>
+    const jokes = [
+      "Why don't scientists trust atoms? Because they make up everything.",
+      "I told my computer I needed a break, and it said: 'No problem, I'll go to sleep.'",
+      "Why did the scarecrow win an award? Because he was outstanding in his field.",
+      "I asked the gym instructor if he could teach me to do the splits. He said, 'How flexible are you?' I said, 'I can't make it on Tuesdays.'",
+      "Why don't skeletons fight each other? They don't have the guts.",
+      "I'm reading a book about anti-gravity. It's impossible to put down.",
+      "Why did the bicycle fall over? Because it was two-tired.",
+      "What do you call fake spaghetti? An impasta.",
+      "I would tell you a joke about an elevator, but it's an uplifting experience.",
+      "Why do bees have sticky hair? Because they use honeycombs.",
+      "I told my wife she was drawing her eyebrows too high. She looked surprised.",
+      "Did you hear about the restaurant on the moon? Great food, no atmosphere.",
+      "Why don't programmers like nature? Too many bugs.",
+      "I tried to catch fog yesterday. Mist.",
+      "How does a penguin build its house? Igloos it together.",
+      "Why did the coffee file a police report? It got mugged.",
+      "I’m reading a book on anti-gravity. It’s impossible to put down.",
+      "What’s orange and sounds like a parrot? A carrot.",
+      "Why was the math book sad? It had too many problems.",
+      "I asked a Frenchman if he played video games. He said, 'Wii.'",
+      "Why don’t oysters donate to charity? Because they are shellfish.",
+      "Why did the computer go to the doctor? It caught a virus.",
+      "How does a snowman get around? By riding an 'icicle'.",
+      "What do you call cheese that isn’t yours? Nacho cheese.",
+      "Why did the tomato turn red? Because it saw the salad dressing.",
+      "What do you call a factory that makes good products? A satisfactory.",
+      "Why can’t your nose be 12 inches long? Because then it would be a foot.",
+      "I would tell you a construction joke, but I’m still working on it.",
+      "What do you call a pile of cats? A meowntain.",
+      "Why did the chicken go to the seance? To talk to the other side.",
+      "Why did the stadium get hot after the game? All of the fans left.",
+      "I’m on a seafood diet. I see food, and I eat it.",
+      "What do you call a bear with no teeth? A gummy bear.",
+      "Why did the cookie go to the hospital? Because he felt crummy.",
+      "Why don’t some couples go to the gym? Because some relationships don’t work out.",
+      "Why did the golfer bring two pairs of pants? In case he got a hole in one.",
+      "What do you call a sleeping bull? A bulldozer.",
+      "I told a joke about a roof once. It went over people’s heads.",
+      "Why did the scarecrow become a successful neurosurgeon? He was outstanding in his field.",
+      "What did one wall say to the other? 'I’ll meet you at the corner.'",
+      "I invented a new word! Plagiarism.",
+      "Why did the physics teacher break up with the biology teacher? There was no chemistry.",
+      "What do you call a fish wearing a bowtie? Sofishticated.",
+      "Why was the broom late? It overswept.",
+      "What did the janitor say when he jumped out of the closet? 'Supplies!'",
+      "Why do cows have hooves instead of feet? Because they lactose.",
+      "I told my computer I needed a break, and it said: 'Error 404: Coffee not found.'",
+      "Why don’t ants get sick? Because they have tiny ant-bodies.",
+      "Why did the mushroom go to the party alone? Because he was a fungi.",
+      "Why was the belt arrested? For holding up pants.",
+      "How do you organize a space party? You planet.",
+      "Why do seagulls fly over the ocean? Because if they flew over the bay, they’d be bagels.",
+      "Why did the man put his money in the freezer? He wanted cold hard cash.",
+      "Why did the computer go to art school? To improve its graphic skills.",
+      "What do you call a can opener that doesn’t work? A can’t opener.",
+      "Why was the math teacher suspicious of prime numbers? Because they were odd.",
+      "Why did the coffee file a police report? It got mugged.",
+      "Why don’t skeletons fight each other? They don’t have the guts.",
+      "Why did the bicycle fall over? It was two-tired.",
+      "How do you catch a squirrel? Climb a tree and act like a nut.",
+      "What do you call an alligator in a vest? An investigator.",
+      "Why did the scarecrow win an award? He was outstanding in his field.",
+      "What’s brown and sticky? A stick.",
+      "Why did the chicken join a band? Because it had the drumsticks.",
+      "What do you call a snowman with a six-pack? An abdominal snowman.",
+      "Why did the ghost go into the bar? For the boos.",
+      "Why did the apple stop in the middle of the road? Because it ran out of juice.",
+      "Why did the computer go to therapy? It had too many bytes.",
+      "Why did the grape stop in the middle of the road? It ran out of juice.",
+      "Why did the scarecrow win an award? Because he was outstanding in his field.",
+      "How does a penguin build its house? Igloos it together.",
+      "Why was the math book sad? Because it had too many problems.",
+      "Why did the stadium get hot after the game? All of the fans left.",
+      "Why did the cookie go to the hospital? Because he felt crummy.",
+      "Why don’t some couples go to the gym? Because some relationships don’t work out.",
+      "I’m reading a book on anti-gravity. It’s impossible to put down.",
+      "Why did the golfer bring extra pants? In case he got a hole in one.",
+      "What do you call a bear with no teeth? A gummy bear.",
+      "I told a joke about a roof once. It went over people’s heads.",
+      "Why did the physics teacher break up with the biology teacher? There was no chemistry.",
+      "Why do seagulls fly over the ocean? Because if they flew over the bay, they’d be bagels.",
+      "What do you call cheese that isn’t yours? Nacho cheese.",
+      "Why did the tomato turn red? Because it saw the salad dressing.",
+      "What do you call a pile of cats? A meowntain.",
+      "Why did the chicken go to the seance? To talk to the other side.",
+      "I’m on a seafood diet. I see food, and I eat it.",
+      "How do you organize a space party? You planet.",
+      "Why was the broom late? It overswept.",
+      "What did the janitor say when he jumped out of the closet? 'Supplies!'",
+      "Why do cows have hooves instead of feet? Because they lactose.",
+      "I told my computer I needed a break, and it said: 'Error 404: Coffee not found.'",
+      "Why don’t ants get sick? Because they have tiny ant-bodies.",
+      "Why did the mushroom go to the party alone? Because he was a fungi."
+    ];
 
-<script>
-const canvas = document.getElementById('gameCanvas');
-const ctx = canvas.getContext('2d');
+    const button = document.getElementById('jokeButton');
+    const jokeText = document.getElementById('jokeText');
 
-const box = 20; // Size of one snake segment
-const canvasSize = 400;
-
-let snake = [{ x: 8 * box, y: 8 * box }];
-let direction = null;
-let food = { 
-  x: Math.floor(Math.random() * (canvasSize / box)) * box, 
-  y: Math.floor(Math.random() * (canvasSize / box)) * box 
-};
-let score = 0;
-
-// Draw functions
-function drawSnake() {
-  ctx.fillStyle = '#4caf50';
-  ctx.strokeStyle = '#2e7d32';
-  snake.forEach(segment => {
-    ctx.fillRect(segment.x, segment.y, box, box);
-    ctx.strokeRect(segment.x, segment.y, box, box);
-  });
-}
-
-function drawFood() {
-  ctx.fillStyle = '#f44336';
-  ctx.fillRect(food.x, food.y, box, box);
-}
-
-// Game loop
-function update() {
-  // Move snake head
-  let head = { ...snake[0] };
-  if (direction === 'LEFT') head.x -= box;
-  if (direction === 'UP') head.y -= box;
-  if (direction === 'RIGHT') head.x += box;
-  if (direction === 'DOWN') head.y += box;
-
-  // Check collision with walls
-  if (
-    head.x < 0 || head.x >= canvasSize ||
-    head.y < 0 || head.y >= canvasSize ||
-    snake.some(segment => segment.x === head.x && segment.y === head.y)
-  ) {
-    clearInterval(game);
-    alert('Game Over! Your score: ' + score);
-    return;
-  }
-
-  snake.unshift(head);
-
-  // Check if snake eats food
-  if (head.x === food.x && head.y === food.y) {
-    score++;
-    document.getElementById('score').innerText = score;
-    food = { 
-      x: Math.floor(Math.random() * (canvasSize / box)) * box, 
-      y: Math.floor(Math.random() * (canvasSize / box)) * box 
-    };
-  } else {
-    snake.pop(); // remove tail if no food eaten
-  }
-
-  // Draw everything
-  ctx.clearRect(0, 0, canvasSize, canvasSize);
-  drawSnake();
-  drawFood();
-}
-
-// Keyboard control
-document.addEventListener('keydown', event => {
-  if (event.key === 'ArrowLeft' && direction !== 'RIGHT') direction = 'LEFT';
-  if (event.key === 'ArrowUp' && direction !== 'DOWN') direction = 'UP';
-  if (event.key === 'ArrowRight' && direction !== 'LEFT') direction = 'RIGHT';
-  if (event.key === 'ArrowDown' && direction !== 'UP') direction = 'DOWN';
-});
-
-// Start game loop
-const game = setInterval(update, 150);
-</script>
-
+    button.addEventListener('click', () => {
+      const randomIndex = Math.floor(Math.random() * jokes.length);
+      jokeText.textContent = jokes[randomIndex];
+    });
+  </script>
 </body>
 </html>
